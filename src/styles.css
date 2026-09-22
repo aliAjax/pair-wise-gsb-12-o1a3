@@ -83,7 +83,7 @@ h1 {
 
 .metrics {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 14px;
   margin-bottom: 18px;
 }
@@ -109,7 +109,13 @@ h1 {
 
 .workspace {
   display: grid;
-  grid-template-columns: minmax(280px, 360px) 1fr;
+  grid-template-columns: minmax(300px, 400px) 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.side {
+  display: grid;
   gap: 18px;
 }
 
@@ -127,7 +133,50 @@ h1 {
 
 .form-grid {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
+}
+
+.span-2 { grid-column: 1 / -1; }
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hint {
+  color: #6b7a93;
+  font-size: 12px;
+}
+
+.form-error {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #b03a2e;
+  background: #fdecea;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 13px;
+}
+
+.revision-banner {
+  grid-column: 1 / -1;
+  background: #fff7e6;
+  border: 1px solid #f0d9a8;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #7a5b16;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+button.link {
+  background: none;
+  color: #176b87;
+  padding: 0 4px;
+  text-decoration: underline;
 }
 
 label {
@@ -251,10 +300,283 @@ textarea {
   padding: 32px 12px;
 }
 
+/* —— 任务卡片 —— */
+.record.frozen {
+  background: #f4f6f9;
+  border-style: dashed;
+}
+
+.head-tags {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.version {
+  font-size: 12px;
+  color: #69758c;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+.tag-frozen {
+  background: #eceff3;
+  color: #536078;
+  border: 1px solid #d5dce6;
+}
+
+.status.st-待执行 { background: #eef2f7; color: #445069; }
+.status.st-执行中 { background: #e8f0fe; color: #1a56c4; }
+.status.st-已完成 { background: #e8f4ef; color: #14724f; }
+
+.revision-reason {
+  color: #7a5b16;
+  background: #fff7e6;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin: 0 0 12px;
+  font-size: 13px;
+}
+
+/* 路段 */
+.segments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.segments-title {
+  color: #69758c;
+  font-size: 13px;
+  margin-right: 4px;
+}
+
+.segment {
+  display: inline-flex;
+  grid-template-columns: none;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dfe7f1;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 13px;
+  color: #445069;
+  background: #fff;
+}
+
+.segment input { width: auto; }
+.segment.done { color: #9aa5b5; text-decoration: line-through; background: #f4f6f9; }
+.segment.locked { cursor: default; }
+
+/* 替换车接管 */
+.takeover-banner {
+  border: 1px solid #f0d9a8;
+  background: #fff7e6;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  color: #7a5b16;
+  font-size: 14px;
+}
+
+.takeover-banner p { margin: 0 0 8px; }
+
+.takeover-done {
+  color: #14724f;
+  background: #e8f4ef;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+.takeover-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  border: 1px dashed #cfd8e5;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.takeover-form .actions,
+.takeover-form .form-error { grid-column: 1 / -1; }
+
+/* 修订链 */
+.chain {
+  color: #69758c;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.chain-arrow { margin: 0 4px; color: #b6c0cf; }
+
+.chain-node {
+  border: 1px solid #dfe7f1;
+  border-radius: 999px;
+  padding: 3px 8px;
+  background: #fff;
+}
+
+.chain-node.current {
+  border-color: #176b87;
+  color: #176b87;
+  font-weight: 700;
+}
+
+/* —— 审查面板 —— */
+.rejection {
+  border: 1px solid #f2c1ba;
+  background: #fdecea;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.rejection-title {
+  margin: 0 0 6px;
+  font-weight: 800;
+  color: #b03a2e;
+}
+
+.rejection-meta {
+  margin: 0 0 10px;
+  color: #7a4a43;
+  font-size: 13px;
+}
+
+.rejection-tip {
+  margin: 10px 0 0;
+  color: #7a4a43;
+  font-size: 13px;
+}
+
+.violation-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.violation-table th,
+.violation-table td {
+  border: 1px solid #f0d5d0;
+  padding: 7px 9px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.violation-table th {
+  background: #faf0ee;
+  color: #8c3a30;
+  white-space: nowrap;
+}
+
+.mono { font-family: "SFMono-Regular", Consolas, monospace; }
+
+.subhead {
+  margin: 14px 0 8px;
+  font-size: 15px;
+  color: #445069;
+}
+
+.review-log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+  color: #536078;
+}
+
+.review-log li {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.review-log time { margin-left: auto; color: #9aa5b5; }
+
+.tag-ok { background: #e8f4ef; color: #14724f; border: 0; }
+.tag-bad { background: #fdecea; color: #b03a2e; border: 0; }
+.log-kind { font-weight: 700; color: #445069; }
+
+.empty-inline {
+  color: #69758c;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* —— 限行规则面板 —— */
+.today-line {
+  margin: 0 0 10px;
+  color: #69758c;
+  font-size: 13px;
+}
+
+.today-chips {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.today-chip {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  border: 1px solid #dfe7f1;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 13px;
+  background: #fbfcfe;
+}
+
+.today-chip strong { color: #176b87; }
+.muted { color: #9aa5b5; }
+
+.rule-group { margin-top: 4px; }
+
+.rule-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.rule-list li {
+  display: grid;
+  gap: 4px;
+}
+
+.rule-label { color: #445069; font-weight: 700; }
+
+.rule-detail { color: #69758c; }
+
+.rule-detail em {
+  font-style: normal;
+  margin-right: 10px;
+  white-space: nowrap;
+}
+
+.rule-detail em.today {
+  color: #b03a2e;
+  font-weight: 700;
+}
+
 @media (max-width: 860px) {
   .app { padding: 18px; }
   .topbar, .workspace { grid-template-columns: 1fr; }
   .stack { justify-content: flex-start; }
   .metrics { grid-template-columns: 1fr; }
-  .details { grid-template-columns: 1fr; }
+  .details, .form-grid, .takeover-form { grid-template-columns: 1fr; }
 }
